@@ -6,6 +6,14 @@ class Program
     
     static void Main(string[] args)
     {
+        while (true)
+        {
+            Welcome();
+        }
+    }
+    
+    static void Welcome()
+    {
         Console.WriteLine("Welcome to Checklist Manager");
         Console.WriteLine("(1) View/Manage saved checklists");
         Console.WriteLine("(2) Create a new checklist");

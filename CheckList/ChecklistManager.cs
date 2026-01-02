@@ -16,10 +16,46 @@ public class ChecklistManager
     public void ChecklistDelete()
     {
         Console.WriteLine("Select a checklist to delete: ");
-        //File.Delete(fileForDeletion);
-        
         string[] allChecklists = ListChecklists();
         string selection = Console.ReadLine();
+
+        try
+        {
+            int selectionInt = int.Parse(selection);
+            if (selection == "0")
+            {
+                return;
+            }
+            else
+            {
+                Console.Write("Are you sure you want to delete " + allChecklists[selectionInt - 1] + "? (y/n) ");
+                string confirm = Console.ReadLine();
+
+                while (confirm != "y" | confirm != "n")
+                {
+                    Console.Write("Are you sure you want to delete " + allChecklists[selectionInt - 1] + "? (y/n) ");
+                    confirm = Console.ReadLine();
+                }
+
+                if (confirm == "n")
+                {
+                    return;
+                }
+                else
+                {
+                    string fileForDeletion = allChecklists[selectionInt - 1];
+                    File.Delete(fileForDeletion);
+                    return;
+                }
+            }
+        }
+        catch
+        {
+            Console.WriteLine("There was an error! The number inputted was most likely out of bounds. Press enter to reset and try again");
+            string s = Console.ReadLine();
+            return;
+        }
+        
     }
 
     private string[] ListChecklists()
