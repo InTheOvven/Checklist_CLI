@@ -2,6 +2,58 @@
 
 public class ChecklistManager
 {
+    public void ManageChecklist()
+    {
+        Console.WriteLine("Select a checklist: ");
+        Console.WriteLine();
+        string[] allChecklists = ListChecklists();
+        
+        string selection = Console.ReadLine();
+        try
+        {
+            int selectionInt = int.Parse(selection);
+            if (selection == "0")
+            {
+                return;
+            }
+            else
+            {
+                ChecklistEditor editor = new ChecklistEditor(allChecklists[selectionInt - 1]);
+                
+                //While True? With a return perhaps...
+                while (true)
+                {
+                    Console.Clear();
+                    Console.WriteLine();
+                    editor.PrintChecklist();
+                    
+                    Console.WriteLine("[1] Check off Tasks   [2] Add a Task     [3] Remove Task     [4] Edit Existing Task      [5] Return to Main Menu");
+                    string input = Console.ReadLine();
+
+                    switch (input)
+                    {
+                        case "1":
+                            break;
+                        case "2":
+                            break;
+                        case "3":
+                            break;
+                        case "4":
+                            break;
+                        case "5":
+                            return;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+        catch
+        {
+            return;
+        }
+    }
+    
     public void ChecklistCreate()
     {
         Console.WriteLine("Enter the name of your new list. This will appear at the top of your checklist: ");
@@ -16,6 +68,7 @@ public class ChecklistManager
     public void ChecklistDelete()
     {
         Console.WriteLine("Select a checklist to delete: ");
+        Console.WriteLine();
         string[] allChecklists = ListChecklists();
         string selection = Console.ReadLine();
 
@@ -61,12 +114,12 @@ public class ChecklistManager
     private string[] ListChecklists()
     {
         int index = 1;
-        string[] files = Directory.GetFiles("", "*.txt");
+        string[] files = Directory.GetFiles("./", "*.txt");
         
         Console.WriteLine("[0] Return to Main Menu");
         foreach (string file in files)
         {
-            Console.WriteLine("[" + index + "] " + file);
+            Console.WriteLine("[" + index + "] " + Path.GetFileName(file));
             index++;
         }
         
