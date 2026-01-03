@@ -20,11 +20,9 @@ public class ChecklistManager
             {
                 ChecklistEditor editor = new ChecklistEditor(allChecklists[selectionInt - 1]);
                 
-                //While True? With a return perhaps...
                 while (true)
                 {
                     Console.Clear();
-                    Console.WriteLine();
                     editor.PrintChecklist();
                     
                     Console.WriteLine("[1] Check off Tasks   [2] Add a Task     [3] Remove Task     [4] Edit Existing Task      [5] Return to Main Menu");
@@ -35,6 +33,7 @@ public class ChecklistManager
                         case "1":
                             break;
                         case "2":
+                            editor.AddTask();
                             break;
                         case "3":
                             break;
@@ -61,7 +60,6 @@ public class ChecklistManager
         
         StreamWriter newFile = new StreamWriter(checklistName + ".txt");
         newFile.WriteLine(checklistName);
-        newFile.WriteLine("");
         newFile.Close();
     }
 
@@ -84,7 +82,7 @@ public class ChecklistManager
                 Console.Write("Are you sure you want to delete " + allChecklists[selectionInt - 1] + "? (y/n) ");
                 string confirm = Console.ReadLine();
 
-                while (confirm != "y" | confirm != "n")
+                while (confirm != "y" && confirm != "n")
                 {
                     Console.Write("Are you sure you want to delete " + allChecklists[selectionInt - 1] + "? (y/n) ");
                     confirm = Console.ReadLine();
