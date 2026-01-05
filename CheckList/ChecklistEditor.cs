@@ -23,7 +23,7 @@ public class ChecklistEditor
             char firstChar = line[0];
             if (firstChar == '[') //If the line is a task (not title or other)
             {
-                tasks.Append(line); //Populate task list
+                tasks.Add(line); //Populate task list
                 Console.WriteLine(index + ". " + line); //Print task with its task number
                 index++;
             }
@@ -76,7 +76,7 @@ public class ChecklistEditor
         Console.WriteLine("What would you like to add to your list? ");
         string newTask = Console.ReadLine();
         
-        checklist.WriteLine("[ ]" + newTask); //Every task begins with '[' (Important for PrintChecklist)
+        checklist.WriteLine("[ ] " + newTask); //Every task begins with '[' (Important for PrintChecklist)
         checklist.Close();
     }
 
@@ -87,7 +87,7 @@ public class ChecklistEditor
         try
         {
             int inputNumber = int.Parse(input);
-            Console.Write("Are you sure you want to delete " + tasks[inputNumber -1] + "? (y/n) ");
+            Console.Write("Are you sure you want to delete " + tasks[inputNumber - 1] + "? (y/n) ");
             string confirm = Console.ReadLine();
 
             while (confirm != "y" && confirm != "n")
