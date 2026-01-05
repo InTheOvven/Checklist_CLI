@@ -31,13 +31,16 @@ public class ChecklistManager
                     switch (input)
                     {
                         case "1":
+                            editor.CheckTasks();
                             break;
                         case "2":
                             editor.AddTask();
                             break;
                         case "3":
+                            editor.DeleteTask();
                             break;
                         case "4":
+                            editor.EditTask();
                             break;
                         case "5":
                             return;
